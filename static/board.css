@@ -1,0 +1,144 @@
+/* Основен стил за тялото на страницата */
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background-color: #f4f5f7;
+    margin: 0;
+    padding: 20px;
+    color: #172b4d;
+}
+
+h1 {
+    text-align: center;
+    color: #0747a6;
+}
+
+/* Стил за формата за добавяне на задачи */
+form {
+    display: flex;
+    justify-content: center;
+    margin-bottom: 30px;
+}
+
+
+.btn-create {
+    padding: 10px 20px;
+    background-color: #0052cc;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    text-decoration: none;
+;
+}
+
+.btn-create:hover {
+    background-color: #0747a6;
+}
+
+/* Контейнерът за "Board"-а */
+.board {
+    display: flex;
+    gap: 20px;
+    justify-content: center;
+    align-items: flex-start;
+}
+
+/* Стил за всяка колона */
+.column {
+    background-color: #ebecf0;
+    border-radius: 8px;
+    width: 300px;
+    min-height: 400px;
+    padding: 10px;
+    box-shadow: 0 1px 3px rgba(0,0,0,0.12);
+}
+
+.column h2 {
+    font-size: 1.1rem;
+    padding: 5px 10px;
+    text-transform: uppercase;
+    color: #5e6c84;
+}
+
+/* Стил за отделните карти със задачи */
+.task-card {
+    background-color: white;
+    border-radius: 3px;
+    padding: 15px;
+    margin-bottom: 10px;
+    box-shadow: 0 1px 0 rgba(9,30,66,.25);
+    transition: background 0.2s ease;
+}
+
+.task-card:hover {
+    background-color: #f4f5f7;
+}
+
+.task-card p {
+    margin: 0 0 10px 0;
+    font-weight: 500;
+}
+
+/* Бутоните за местене (линковете) */
+.task-card a {
+    text-decoration: none;
+    font-size: 0.85rem;
+    color: #0052cc;
+    font-weight: bold;
+    border: 1px solid #0052cc;
+    padding: 3px 8px;
+    border-radius: 3px;
+}
+
+.task-card a:hover {
+    background-color: #0052cc;
+    color: white;
+}
+
+
+
+/* Контейнер за филтъра */
+.filter-container {
+    background-color: #ffffff;
+    padding: 15px;
+    margin: 10px auto;
+    max-width: 50%;
+    border-radius: 4px;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.6);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 15px;
+}
+
+/* Етикетът на филтъра */
+.filter-container label {
+    font-weight: 600;
+    font-size: 18px;
+    color: #5e6c84;
+
+}
+
+/* Стилизиране на падащото меню (select) */
+.filter-container select {
+    padding: 8px 12px;
+    border: 2px solid #dfe1e6;
+    border-radius: 4px;
+    background-color: #fafbfc;
+    color: #172b4d;
+    font-size: 14px;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    margin: 4px;
+}
+
+/* Ефект при посочване и кликване */
+.filter-container select:hover {
+    background-color: #ebecf0;
+}
+
+.filter-container select:focus {
+    outline: none;
+    border-color: #0052cc;
+    background-color: #ffffff;
+}

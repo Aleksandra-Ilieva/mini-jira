@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <link rel="stylesheet" href="{{ url_for('static', filename='reset.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='board.css') }}">
+    <title>Mini Jira</title>
+</head>
+<body>
+<h1>Mini Jira Board</h1>
+
+<form action="/create-task" method="POST">
+<a href="/create-task" class="btn-create">Create New Task</a>
+</form>
+
+<div class="filter-container" style="text-align: center; margin-bottom: 20px;">
+    <form action="/" method="GET" style="display: inline-block;">
+        <label for="priority">Filter by Priority:</label>
+        <select name="priority" onchange="this.form.submit()">
+            <option value="All" {% if current_priority == 'All' %}selected{% endif %}>All Priorities</option>
+            <option value="Minor" {% if current_priority == 'Minor' %}selected{% endif %}>Minor</option>
+            <option value="Major" {% if current_priority == 'Major' %}selected{% endif %}>Major</option>
+            <option value="Critical/Bug" {% if current_priority == 'Critical/Bug' %}selected{% endif %}>Critical/Bug</option>
+        </select>
+    </form>
+</div>
+<div class="board">
+    {% for status in ['To Do', 'In Progress', 'Done'] %}
+    <div class="column">
+        <h2>{{ status }}</h2>
+        {% for task in tasks %}
+        {% if task.status == status %}
+        <div class="task-card">
+            <small>{{ task.priority }}</small>
+            <p><strong>{{ task.title }}</strong></p>
+            <p style="font-size: 0.8em;">👤 {{ task.assignee }}</p>
+            <div class="task-actions">
+                {% if status == 'To Do' %}
+                <a href="/move/{{ task.task_id }}/In Progress">→ Start</a>
+                {% elif status == 'In Progress' %}
+                <a href="/move/{{ task.task_id }}/Done">→ Finish</a>
+                {% elif status == 'Done' %}
+               <a href="/delete/{{ task.task_id }}" style="color: #de350b; border-color: #de350b;">Close and remove</a>
+                {% endif %}
+            </div>
+        </div>
+        {% endif %}
+        {% endfor %}
+    </div>
+    {% endfor %}
+</div>
+</body>
+</html>

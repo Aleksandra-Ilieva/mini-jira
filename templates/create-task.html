@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+     <link rel="stylesheet" href="{{ url_for('static', filename='reset.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='create-task.css') }}">
+    <title>Create New Task</title>
+</head>
+<body>
+    <div class="container">
+        <h1>Create New Ticket</h1>
+        <form action="/add" method="POST" class="create-form">
+            <div class="form-group">
+                <label>Title:</label>
+                <label>
+                    <input type="text" name="title" required placeholder="What needs to be done?">
+                </label>
+            </div>
+
+            <div class="form-group">
+                <label>Priority:</label>
+                <label>
+                    <select name="priority">
+                        <option value="Minor">Minor</option>
+                        <option value="Major">Major</option>
+                        <option value="Critical/Bug">Critical/Bug</option>
+                    </select>
+                </label>
+            </div>
+
+            <div class="form-group">
+                <label>Assignee:</label>
+                <input type="text" name="assignee" placeholder="User name">
+            </div>
+
+            <div class="button-group">
+                <button class="btn-submit" type="submit">Create Task</button>
+                <a class="btn-cancel" href="/">Cancel</a>
+            </div>
+        </form>
+    </div>
+</body>
+</html>
