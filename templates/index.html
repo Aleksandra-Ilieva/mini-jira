@@ -8,18 +8,25 @@
 <body>
 <h1>Mini Jira Board</h1>
 
-<form action="/create-task" method="POST">
-<a href="/create-task" class="btn-create">Create New Task</a>
-</form>
+<div class="top-nav">
+    <form action="/create-task" method="POST">
+        <a href="/create-task" class="btn-create">Create New Task</a>
+    </form>
+</div>
+
 
 <div class="filter-container" style="text-align: center; margin-bottom: 20px;">
     <form action="/" method="GET" style="display: inline-block;">
         <label for="priority">Filter by Priority:</label>
         <select name="priority" onchange="this.form.submit()">
-            <option value="All" {% if current_priority == 'All' %}selected{% endif %}>All Priorities</option>
-            <option value="Minor" {% if current_priority == 'Minor' %}selected{% endif %}>Minor</option>
-            <option value="Major" {% if current_priority == 'Major' %}selected{% endif %}>Major</option>
-            <option value="Critical/Bug" {% if current_priority == 'Critical/Bug' %}selected{% endif %}>Critical/Bug</option>
+            <option value="All" {% if current_priority==
+            'All' %}selected{% endif %}>All Priorities</option>
+            <option value="Minor" {% if current_priority==
+            'Minor' %}selected{% endif %}>Minor</option>
+            <option value="Major" {% if current_priority==
+            'Major' %}selected{% endif %}>Major</option>
+            <option value="Critical/Bug" {% if current_priority==
+            'Critical/Bug' %}selected{% endif %}>Critical/Bug</option>
         </select>
     </form>
 </div>
@@ -30,17 +37,41 @@
         {% for task in tasks %}
         {% if task.status == status %}
         <div class="task-card">
-            <small>{{ task.priority }}</small>
-            <p><strong>{{ task.title }}</strong></p>
-            <p style="font-size: 0.8em;">👤 {{ task.assignee }}</p>
+            <small class="priority-tag priority-{{ task.priority.lower().replace('/', '-') }}">
+                {{ task.priority }}
+            </small>
+            <p class="task-title"><strong>{{ task.title }}</strong></p>
+
+            <p class="task-description">{{ task.description }}</p>
+
+            <div class="task-details">
+                <p><strong>Reporter:</strong> {{ task.reporter }}</p>
+                <p><strong>Assigned:</strong> {{ task.assignee }}</p>
+            </div>
             <div class="task-actions">
                 {% if status == 'To Do' %}
-                <a href="/move/{{ task.task_id }}/In Progress">→ Start</a>
+                <div class="task-actions">
+                    <a href="/move/{{ task.task_id }}/In Progress">→ Start</a>
+                </div>
+
                 {% elif status == 'In Progress' %}
-                <a href="/move/{{ task.task_id }}/Done">→ Finish</a>
+                <div class="task-actions">
+                    <a href="/move/{{ task.task_id }}/Done">→ Finish</a>
+                </div>
+
                 {% elif status == 'Done' %}
-               <a href="/delete/{{ task.task_id }}" style="color: #de350b; border-color: #de350b;">Close and remove</a>
+                <div class="task-actions">
+                    <a href="/delete/{{ task.task_id }}" style=" background-color: #C8AAAA; border-color: #C8AAAA;">Close
+                        and remove</a>
+                </div>
+
                 {% endif %}
+
+                <div class="task-actions">
+                    {% if status != 'Done' %}
+                    <a href="/edit/{{task.task_id}}" style="margin-right: 10px;">Edit</a>
+                    {% endif %}
+                </div>
             </div>
         </div>
         {% endif %}

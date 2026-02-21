@@ -1,144 +1,171 @@
-/* Основен стил за тялото на страницата */
 body {
-    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-    background-color: #f4f5f7;
+    font-family: 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+    background-color: #C8AAAA;
     margin: 0;
-    padding: 20px;
-    color: #172b4d;
+    padding: 40px 20px;
+    color: #2D232E;
 }
 
 h1 {
     text-align: center;
-    color: #0747a6;
+    color: #574964;
+    font-size: 2.5rem;
+    font-weight: 800;
+    margin-bottom: 30px;
+    text-shadow: 1px 1px 2px rgba(255,255,255,0.5);
 }
 
-/* Стил за формата за добавяне на задачи */
-form {
+.top-nav {
     display: flex;
     justify-content: center;
-    margin-bottom: 30px;
+    margin-bottom: 40px;
 }
 
-
 .btn-create {
-    padding: 10px 20px;
-    background-color: #0052cc;
+    padding: 12px 28px;
+    background-color: #574964;
     color: white;
     border: none;
-    border-radius: 5px;
+    border-radius: 50px;
     cursor: pointer;
     text-decoration: none;
-;
+    font-weight: 600;
+    box-shadow: 0 4px 15px rgba(87, 73, 100, 0.3);
+    transition: all 0.3s ease;
 }
 
 .btn-create:hover {
-    background-color: #0747a6;
+    background-color: #9F8383;
+    transform: translateY(-2px);
+    box-shadow: 0 6px 20px rgba(87, 73, 100, 0.4);
 }
 
-/* Контейнерът за "Board"-а */
 .board {
     display: flex;
-    gap: 20px;
+    gap: 25px;
     justify-content: center;
     align-items: flex-start;
+    max-width: 1300px;
+    margin: 0 auto;
 }
 
-/* Стил за всяка колона */
 .column {
-    background-color: #ebecf0;
-    border-radius: 8px;
-    width: 300px;
-    min-height: 400px;
-    padding: 10px;
-    box-shadow: 0 1px 3px rgba(0,0,0,0.12);
+    background-color: rgba(235, 236, 240, 0.8);
+    backdrop-filter: blur(5px);
+    border-radius: 12px;
+    width: 500px;
+    min-height: 500px;
+    padding: 20px;
+    box-shadow: 0 10px 25px rgba(0,0,0,0.1);
+    border: 1px solid rgba(255,255,255,0.3);
 }
 
 .column h2 {
-    font-size: 1.1rem;
-    padding: 5px 10px;
+    font-size: 1rem;
+    text-align: center;
     text-transform: uppercase;
-    color: #5e6c84;
+    letter-spacing: 1.5px;
+    color: #574964;
+    margin-bottom: 20px;
+    padding-bottom: 10px;
+    border-bottom: 2px solid #9F8383;
 }
 
-/* Стил за отделните карти със задачи */
 .task-card {
-    background-color: white;
-    border-radius: 3px;
-    padding: 15px;
-    margin-bottom: 10px;
-    box-shadow: 0 1px 0 rgba(9,30,66,.25);
-    transition: background 0.2s ease;
+    background-color: #ffffff;
+    border-radius: 10px;
+    padding: 18px;
+    margin-bottom: 15px;
+    box-shadow: 0 4px 6px rgba(0,0,0,0.05);
+    border-top: 4px solid #574964;
+    transition: all 0.2s ease;
 }
 
 .task-card:hover {
-    background-color: #f4f5f7;
+    transform: scale(1.02);
+    box-shadow: 0 8px 15px rgba(0,0,0,0.1);
 }
 
 .task-card p {
-    margin: 0 0 10px 0;
-    font-weight: 500;
+    margin: 0 0 15px 0;
+    font-size: 1rem;
+    line-height: 1.4;
+    color: #333;
 }
 
-/* Бутоните за местене (линковете) */
-.task-card a {
+.task-actions {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+}
+
+.task-actions a {
     text-decoration: none;
-    font-size: 0.85rem;
-    color: #0052cc;
-    font-weight: bold;
-    border: 1px solid #0052cc;
-    padding: 3px 8px;
-    border-radius: 3px;
+    font-size: 0.75rem;
+    color: #574964;
+    font-weight: 700;
+    text-transform: uppercase;
+    border: 1.5px solid #574964;
+    padding: 4px 10px;
+    border-radius: 6px;
+    transition: all 0.2s;
 }
 
-.task-card a:hover {
-    background-color: #0052cc;
-    color: white;
+.task-actions a:hover {
+    background-color: #574964;
+    color: #ffffff;
 }
 
-
-
-/* Контейнер за филтъра */
 .filter-container {
-    background-color: #ffffff;
-    padding: 15px;
-    margin: 10px auto;
-    max-width: 50%;
-    border-radius: 4px;
-    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.6);
+    background-color: #574964;
+    padding: 20px;
+    margin: 0 auto 40px auto;
+    max-width: 500px;
+    border-radius: 15px;
     display: flex;
     justify-content: center;
     align-items: center;
     gap: 15px;
+    box-shadow: 0 8px 25px rgba(0,0,0,0.2);
 }
 
-/* Етикетът на филтъра */
 .filter-container label {
-    font-weight: 600;
-    font-size: 18px;
-    color: #5e6c84;
-
+    color: #C8AAAA;
+    font-weight: bold;
 }
-
-/* Стилизиране на падащото меню (select) */
 .filter-container select {
-    padding: 8px 12px;
-    border: 2px solid #dfe1e6;
+    padding: 8px 15px;
+    border-radius: 8px;
+    border: none;
+    background: #ffffff;
+    color: #574964;
+    font-weight: 600;
+    margin-left: 10px;
+}
+
+/* Основен стил за етикета */
+.priority-tag {
+    display: inline-block;
+    padding: 2px 8px;
     border-radius: 4px;
-    background-color: #fafbfc;
-    color: #172b4d;
-    font-size: 14px;
-    cursor: pointer;
-    transition: all 0.2s ease;
-    margin: 4px;
+    font-size: 0.7rem;
+    font-weight: bold;
+    color: white;
+    margin-bottom: 8px;
+    text-transform: uppercase;
 }
 
-/* Ефект при посочване и кликване */
-.filter-container select:hover {
-    background-color: #ebecf0;
+.priority-critical-bug {
+    background-color: #de350b;
+    box-shadow: 0 0 5px rgba(222, 53, 11, 0.4);
 }
 
-.filter-container select:focus {
-    outline: none;
-    border-color: #0052cc;
-    background-color: #ffffff;
+.priority-major {
+    background-color: #ffab00;
+    color: #2D232E;
+}
+
+
+.priority-minor {
+    background-color: #36b37e;
 }

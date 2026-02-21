@@ -4,8 +4,22 @@ from models import Task
 app = Flask(__name__)
 
 tasks_db = [
-    Task(1, "Fix Login Bug", "Ivanka"),
-    Task(2, "Create API Docs", "Aleksandra")
+    Task(
+        task_id=1,
+        title="Fix Login Bug",
+        priority="Critical/Bug",
+        assignee="Mihaela",
+        reporter="Georgi",
+        description="Users cannot log in with Google accounts. Shows 404 error."
+    ),
+    Task(
+        task_id=2,
+        title="Create API Docs",
+        priority="Major",
+        assignee="Aleksandra",
+        reporter="Ivan",
+        description="Document all endpoints for the new user module."
+    )
 ]
 
 
@@ -33,9 +47,18 @@ def add_task():
     title = request.form.get('title')
     priority = request.form.get('priority')
     assignee = request.form.get('assignee')
+    reporter = request.form.get('reporter')
+    description = request.form.get('description')
     if title:
         new_id = len(tasks_db) + 1
-        new_task = Task(new_id, title, assignee, priority)
+        new_task = Task(
+            task_id=new_id,
+            title=title,
+            assignee=assignee,
+            priority=priority,
+            reporter=reporter,
+            description=description
+        )
         tasks_db.append(new_task)
     return redirect(url_for('index'))
 
@@ -53,6 +76,25 @@ def move_task(task_id, next_status):
 def delete_task(task_id):
     global tasks_db
     tasks_db = [task for task in tasks_db if task.task_id != task_id]
+    return redirect(url_for('index'))
+
+@app.route('/edit/<int:task_id>', methods=['GET'])
+def edit_task_page(task_id):
+    task_to_edit = next((t for t in tasks_db if t.task_id == task_id), None)
+    if task_to_edit:
+        return render_template('edit-task.html', task=task_to_edit)
+    return redirect(url_for('index'))
+
+@app.route('/update/<int:task_id>', methods=['POST'])
+def update_task(task_id):
+    for task in tasks_db:
+        if task.task_id == task_id:
+            task.title = request.form.get('title')
+            task.priority = request.form.get('priority')
+            task.assignee = request.form.get('assignee')
+            task.reporter = request.form.get('reporter')
+            task.description = request.form.get('description')
+            break
     return redirect(url_for('index'))
 
 

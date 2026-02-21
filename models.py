@@ -1,10 +1,12 @@
 class Task:
-    def __init__(self, task_id, title,assignee,priority="Minor", status="To Do"):
+    def __init__(self, task_id, title,assignee,priority="Minor",reporter="Admin", description="", status="To Do"):
         self.task_id = task_id
         self.title = title
         self.priority = priority
         self.assignee = assignee
         self.status = status
+        self.reporter = reporter
+        self.description = description
 
     def update_status(self, new_status):
         """Метод за промяна на статуса на задачата."""
